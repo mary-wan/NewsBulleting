@@ -1,4 +1,3 @@
-from app import app
 import urllib.request,json
 from .models import Article,Source
 
@@ -24,8 +23,9 @@ def get_headlines():
         get_headline_response = json.loads(get_headline_data)
         
         headline_results = None
-        if get_headline_response['results']:
-            headline_results_list =get_headline_response['results']
+        
+        if get_headline_response['articles']:
+            headline_results_list =get_headline_response['articles']
             headline_results = process_headline_results(headline_results_list)
             
     return headline_results
@@ -43,16 +43,18 @@ def process_headline_results(headline_list):
     
     headline_results=[]
     for headline_item in headline_list:
-        image = headline_item.get('url')
+        image = headline_item.get('urlToImage')
         title = headline_item.get ('title')
         author = headline_item.get('author')
         description = headline_item.get('description')
         time = headline_item.get('publishedAt')
-        url = headline_item.get('urlToImage')
+        url = headline_item.get('url')
         
         if url:
             headline_object = Article(image,title,author,description,time,url)
             headline_results.append(headline_object)
+            
+    return headline_results
             
     
     
@@ -67,8 +69,8 @@ def get_category(category):
         
         category_results = None
         
-        if get_category_response['results']:
-            category_results_list =get_category_response['results']
+        if get_category_response['articles']:
+            category_results_list =get_category_response['articles']
             category_results = process_headline_results(category_results_list)
             
     return category_results
@@ -80,12 +82,12 @@ def get_source():
     get_source_url = source_url.format(api_key)
     with urllib.request.urlopen(get_source_url) as url:
         get_source_data = url.read()
-        get_source_result = json.loads(get_source_data)
+        get_source_response = json.loads(get_source_data)
         
         source_results = None
         
-        if get_source_result['results']:
-            source_results_list =get_source_result['results']
+        if get_source_response['sources']:
+            source_results_list =get_source_response['sources']
             source_results = process_source_results(source_results_list)
             
     return source_results

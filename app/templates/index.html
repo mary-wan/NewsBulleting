@@ -1,1 +1,15 @@
 {% extends 'base.html'%}
+{% block content %}
+<h3> Popular Sources</h3>
+
+<!-- <ul>
+    {% for source in sources %}
+    <li>{{ source.name}}</li>
+    {% endfor %}
+</ul>
+<ul> -->
+    {% for headline in categories %}
+    <li>{{ headline.image}}</li>
+    {% endfor %}
+</ul>
+{% endblock%}
