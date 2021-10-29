@@ -4,6 +4,9 @@
     margin-left: auto;
     color: white !important;
 }
+a:hover{
+    font-weight: bold !important;
+}
 .navbar-brand{
     font-family: 'Aladin', cursive;
     color: white !important;

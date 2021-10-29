@@ -1,15 +1,50 @@
 {% extends 'base.html'%}
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
 {% block content %}
-<h3> Popular Sources</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="sources col-lg-2">
+            <h4 class="text-center text-primary mt-2">BUSINESS</h4><br>
+            <ul>
+                {% for category in categories %}
+                <!-- <h4><a href="{{ category.url }}">{{ category.title }}</a></h4> -->
+                <p>{{ category.description }}</p>
+                <p class="publish-date">Published at <strong>{{ category.publishedAt }}</strong></p>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="headlines col-lg-7">
+            <h3 class="text-center text-primary mt-2"> HEADLINES</h3><br>
+            <ul>
+                {% for headline in headlines %}
+                <a href=""> <img src="{{ headline.image }}" alt="" height="150" width="300"></a>
+                <h4><a href="{{ headline.url }}">{{ headline.title }}</a></h4>
+                <p>{{ headline.description }}</p>
+                <p class="publish-date">Published at <strong>{{ headline.publishedAt }}</strong></p>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="sources col-lg-2">
+            <h4 class="text-center text-primary mt-2">SOURCES</h4><br>
+            <ul>
+                {% for source in sources %}
+                <a href="{{source.url}}">
+                    <p class="text-muted">{{ source.name}}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
+</div>
 <!-- <ul>
-    {% for source in sources %}
-    <li>{{ source.name}}</li>
-    {% endfor %}
-</ul>
-<ul> -->
     {% for headline in categories %}
     <li>{{ headline.image}}</li>
     {% endfor %}
-</ul>
+</ul> -->
+</div>
+
 {% endblock%}

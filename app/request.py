@@ -1,5 +1,6 @@
 import urllib.request,json
 from .models import Article,Source
+import datetime
 
 api_key = None
 category_url = None
@@ -47,11 +48,15 @@ def process_headline_results(headline_list):
         title = headline_item.get ('title')
         author = headline_item.get('author')
         description = headline_item.get('description')
-        time = headline_item.get('publishedAt')
+        publishedAt = headline_item.get('publishedAt')
         url = headline_item.get('url')
         
-        if url:
-            headline_object = Article(image,title,author,description,time,url)
+        date_time_readable = datetime.datetime.strptime(publishedAt, '%Y-%m-%dT%H:%M:%SZ')
+        publishedAt = date_time_readable.date()
+		
+        
+        if image:
+            headline_object = Article(image,title,author,description,publishedAt,url)
             headline_results.append(headline_object)
             
     return headline_results

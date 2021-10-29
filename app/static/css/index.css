@@ -1,0 +1,6 @@
+.sources li{
+    list-style-type: none;
+}
+*{
+    overflow-x: none !important;
+}
