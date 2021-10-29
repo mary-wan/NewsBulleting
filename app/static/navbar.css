@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+
+.navbar-nav a{
+    margin-left: auto;
+    color: white !important;
+}
+.navbar-brand{
+    font-family: 'Aladin', cursive;
+}
