@@ -5,8 +5,8 @@ class Config:
     General configuration parent class
     '''
     CATEGORY_URL='https://newsapi.org/v2/top-headlines?language=en&category={}&apiKey={}'
-    SOURCE_URL='https://newsapi.org/v2/sources?language=en&apiKey={}'
-    HEADLINE_URL = 'https://newsapi.org/v2/top-headlines?language=en&apiKey={}'
+    SOURCE_URL='https://newsapi.org/v2/sources?language=en&country=us&apiKey={}'
+    HEADLINE_URL ='https://newsapi.org/v2/top-headlines?language=en&apiKey={}'
     NEWS_API_KEY=os.environ.get('NEWS_API_KEY')
    
 
