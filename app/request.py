@@ -73,3 +73,44 @@ def get_category(category):
             
     return category_results
 
+def get_source():
+    '''
+    Function that gets the json response to our source request
+    '''
+    get_source_url = source_url.format(api_key)
+    with urllib.request.urlopen(get_source_url) as url:
+        get_source_data = url.read()
+        get_source_result = json.loads(get_source_data)
+        
+        source_results = None
+        
+        if get_source_result['results']:
+            source_results_list =get_source_result['results']
+            source_results = process_source_results(source_results_list)
+            
+    return source_results
+
+def process_source_results(source_list):
+    '''
+    Function  that processes the category result and transform them to a list of Objects
+
+    Args:
+        source_list: A list of dictionaries that contain category details
+
+    Returns :
+        category_results: Articles in the category
+    '''
+    
+    source_results= []
+    
+    for source_item in source_list:
+        id = source_item.get('id')
+        name = source_item.get('name')
+        url = source_item.get('url')
+        description = source_item.get('description')
+        
+        
+        if url:
+            source_object = Source(id,name,url,description)
+            source_results.append(source_object)
+    return source_results
