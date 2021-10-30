@@ -1,6 +1,6 @@
 import urllib.request,json
 from .models import Article,Source
-import datetime
+import datetime,timeago
 
 api_key = None
 category_url = None
@@ -52,7 +52,10 @@ def process_headline_results(headline_list):
         url = headline_item.get('url')
         
         date_time_readable = datetime.datetime.strptime(publishedAt, '%Y-%m-%dT%H:%M:%SZ')
-        publishedAt = date_time_readable.date()
+        # publishedAt = date_time_readable.date()
+        now = datetime.datetime.now() + datetime.timedelta(seconds = 60 * 3.4)
+        publishedAt =timeago.format(date_time_readable, now)
+       
 		
         
         if image:

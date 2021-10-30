@@ -1,6 +1,15 @@
-.sources li{
-    list-style-type: none;
-}
-*{
+.container-fluid{
     overflow-x: none !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+p, a{
+    margin: 0px !important;
+    padding: 0px !important;
+    
+}
+.card{
+    padding: 0px !important;
+    margin-bottom: 20px;
+    color: purple !important;
 }

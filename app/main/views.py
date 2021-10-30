@@ -8,6 +8,6 @@ def index():
     Root function returning index/home page with data
     '''
     sources= get_source()
-    categories= get_category('sports')
+    categories= get_category('business')
     headlines = get_headlines()
     return render_template('index.html',categories=categories,headlines=headlines,sources=sources)

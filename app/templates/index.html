@@ -1,34 +1,43 @@
 {% extends 'base.html'%}
 {% block styles%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid m-0 p-0">
     <div class="row">
-        <div class="sources col-lg-2">
-            <h4 class="text-center text-primary mt-2">BUSINESS</h4><br>
+        <div class="sources col-md-3">
+            <h4 class="text-center text-danger text-sm mt-2">BUSINESS</h4><br>
             <ul>
                 {% for category in categories %}
-                <!-- <h4><a href="{{ category.url }}">{{ category.title }}</a></h4> -->
-                <p>{{ category.description }}</p>
-                <p class="publish-date">Published at <strong>{{ category.publishedAt }}</strong></p>
+                <p><strong>{{ category.title }}</strong></p>
+                {{ category.description }} <br>
+                <a href="{{ category.url }}">Read more...</a>
+                <p>updated: <strong>{{ category.publishedAt }}</strong></p>
+                ------------------------
                 {% endfor %}
             </ul>
         </div>
-        <div class="headlines col-lg-7">
-            <h3 class="text-center text-primary mt-2"> HEADLINES</h3><br>
-            <ul>
+        <div class="col-md-1"></div>
+        <div class="headlines col-md-5">
+            <h3 class="text-danger text-sm mt-2"> HEADLINES</h3><br>
+            <div>
                 {% for headline in headlines %}
-                <a href=""> <img src="{{ headline.image }}" alt="" height="150" width="300"></a>
-                <h4><a href="{{ headline.url }}">{{ headline.title }}</a></h4>
-                <p>{{ headline.description }}</p>
-                <p class="publish-date">Published at <strong>{{ headline.publishedAt }}</strong></p>
+                <div class="card mb-2" style="width: 18rem;">
+                    <a href="{{ headline.url }}"><img class="card-img-top" src="{{ headline.image }}" alt=""></a>
+                    <div class="card-body">
+                      <a href="{{ headline.url }}" class="card-title">{{ headline.title }}</a><br> 
+                      updated: <strong>{{ headline.publishedAt }}</strong>
+                      <!-- <p class="card-text">{{ headline.description }}</p> -->
+                        <!-- <p>Updated: <strong>{{ headline.publishedAt }}</strong></p> -->
+                    </div>
+                </div>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
-        <div class="sources col-lg-2">
-            <h4 class="text-center text-primary mt-2">SOURCES</h4><br>
+        <!-- <div class="col-lg-1"></div> -->
+        <div class="sources col-md-2">
+            <h4 class="text-center text-danger text-sm mt-2">SOURCES</h4><br>
             <ul>
                 {% for source in sources %}
                 <a href="{{source.url}}">
@@ -37,6 +46,7 @@
                 {% endfor %}
             </ul>
         </div>
+        <div class="col-md-1"></div>
     </div>
 
 </div>
