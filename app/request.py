@@ -166,4 +166,5 @@ def process_source_article_results(headline_list):
                     headline_results.append(headline_object)
             
     return headline_results
+
             
