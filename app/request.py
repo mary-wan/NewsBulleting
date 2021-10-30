@@ -59,12 +59,12 @@ def process_headline_results(headline_list):
 		
         
         if image:
-            headline_object = Article(image,title,author,description,publishedAt,url)
-            headline_results.append(headline_object)
+            if description:
+                if publishedAt:
+                    headline_object = Article(image,title,author,description,publishedAt,url)
+                    headline_results.append(headline_object)
             
-    return headline_results
-            
-    
+    return headline_results  
     
 def get_category(category):
     '''
@@ -89,16 +89,16 @@ def get_source():
     '''
     get_source_url = source_url.format(api_key)
     with urllib.request.urlopen(get_source_url) as url:
-        get_source_data = url.read()
-        get_source_response = json.loads(get_source_data)
+        get_source_article_data = url.read()
+        get_source_article_response = json.loads(get_source_article_data)
         
-        source_results = None
+        source__article_results = None
         
-        if get_source_response['sources']:
-            source_results_list =get_source_response['sources']
-            source_results = process_source_results(source_results_list)
+        if get_source_article_response['sources']:
+            source_results_list =get_source_article_response['sources']
+            source__article_results = process_source_results(source_results_list)
             
-    return source_results
+    return source__article_results
 
 def process_source_results(source_list):
     '''
@@ -124,3 +124,46 @@ def process_source_results(source_list):
             source_object = Source(id,name,url,description)
             source_results.append(source_object)
     return source_results
+
+def get_source_aricles(id):
+    get_source_article_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id,api_key)
+    with urllib.request.urlopen(get_source_article_url) as url:
+        get_source_data = url.read()
+        get_source_response = json.loads(get_source_data)
+        
+        source_results = None
+        
+        if get_source_response['articles']:
+            source_results_list =get_source_response['articles']
+            source_results = process_source_article_results(source_results_list)
+            
+    return source_results
+
+def process_source_article_results(headline_list):
+    '''
+    Function  that processes the headline result and transform them to a list of Objects
+
+    Args:
+        headline_list: A list of dictionaries that contain headline details
+
+    Returns :
+        headline_results: headlines in the dict
+    '''
+    
+    headline_results=[]
+    for headline_item in headline_list:
+        image = headline_item.get('urlToImage')
+        title = headline_item.get ('title')
+        author = headline_item.get('author')
+        description = headline_item.get('description')
+        publishedAt = headline_item.get('publishedAt')
+        url = headline_item.get('url')
+
+        if image:
+            if description:
+                if publishedAt:
+                    headline_object = Article(image,title,author,description,publishedAt,url)
+                    headline_results.append(headline_object)
+            
+    return headline_results
+            
