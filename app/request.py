@@ -1,4 +1,6 @@
 import urllib.request,json
+
+from flask.templating import render_template
 from .models import Article,Source
 import datetime,timeago
 
@@ -180,6 +182,10 @@ def search_topic(topic_name):
             search_topic_list = search_topic_response['articles']
             search_topic_results = process_headline_results((search_topic_list))
 
-    return search_topic_results
+            return search_topic_results
+
+        else:
+            return render_template('notfound.html')
+        
 
             
