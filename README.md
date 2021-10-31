@@ -12,7 +12,8 @@
 ## Description
 Application that helps to those always miss the news and they are very frustrated since they can't keep up with current affairs. The site shows different articles from different sources and authors. It consumes the NEWS API
 
-
+## Live link
+`https://newsbulleting.herokuapp.com/`
 ## Installation
 ### Requirements
 * python3.6
@@ -29,12 +30,17 @@ $ pip install -r requirements.txt
 ```
 
 ### Running the Application
+To view the website run the command
 ```
 $ chmod a+x start.sh
 $ ./start.sh
 
 ```
+To run the tests run the command
+```
+$ python3.6 manage.py test
 
+```
 ## Behaviour Driven Development
 | Behaviour | Input | Output |
 | :---------------- | :---------------: | ------------------: |
