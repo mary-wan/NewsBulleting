@@ -10,6 +10,9 @@ source_url = None
 headline_url = None
 
 def configure_request(app):
+    '''
+    Function to configure requests
+    '''
     global api_key, source_url, category_url,headline_url
     api_key = app.config['NEWS_API_KEY']
     category_url=app.config['CATEGORY_URL']
@@ -104,13 +107,13 @@ def get_source():
 
 def process_source_results(source_list):
     '''
-    Function  that processes the category result and transform them to a list of Objects
+    Function  that processes the source result and transform them to a list of Objects
 
     Args:
-        source_list: A list of dictionaries that contain category details
+        source_list: A list of dictionaries that contain source details
 
     Returns :
-        category_results: Articles in the category
+        source_results: sources
     '''
     
     source_results= []
@@ -128,6 +131,9 @@ def process_source_results(source_list):
     return source_results
 
 def get_source_aricles(id):
+    '''
+    Function that gets the json response to our source request
+    '''
     get_source_article_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id,api_key)
     with urllib.request.urlopen(get_source_article_url) as url:
         get_source_data = url.read()
@@ -171,6 +177,9 @@ def process_source_article_results(headline_list):
 
 
 def search_topic(topic_name):
+    '''
+    Function that gets the json response to our source request
+    '''
     search_topic_url = 'https://newsapi.org/v2/everything?apiKey={}&q={}'.format(api_key,topic_name)
     with urllib.request.urlopen(search_topic_url) as url:
         search_topic_data = url.read()

@@ -21,7 +21,7 @@ def index():
 @main.route('/categories/<category>')
 def category(category):
     '''
-    function to return the categories.html page and its content
+    method to render category page
     '''
     category = get_category(category)
     sources= get_source()
@@ -32,7 +32,7 @@ def category(category):
 def article(id):
 
     '''
-    View article page function that returns the various article details page and its data
+    method to render articles in a source
     '''
     # title= 'Articles'
     articles = get_source_aricles(id)
