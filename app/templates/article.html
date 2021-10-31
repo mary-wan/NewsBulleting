@@ -2,56 +2,55 @@
 {% block styles%}
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='css/font.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 {% block content %}
 <div class="container-fluid m-0 pl-2">
     <div class="row">
         <div class="col-md-3">
-            <div class="categories-sidebar">
-                <div class="heading">
+            <div class="horizontal-border mt-3">
+                <div class="intro">
                     IN A NUTSHELL
                 </div>
             </div>
                 <div class="content">
                     {% for health in category %}
-                    <li class="entertainment-item">
-                        <span class="entertainment-headline"><span>{{ health.publishedAt}} </span><a href="{{health.url}}" class="text-dark">{{ health.title }}</a> </span>
+                    <li class="category-info">
+                        <span class="category-headline"><span>{{ health.publishedAt}} </span><a href="{{health.url}}" class="text-dark">{{ health.title }}</a> </span>
                         <a href="{{health.url}}" class="text-primary">Read more... </a>
                     </li>
                     {% endfor %}
                 </div>
         </div>
         <div class="col-md-6">
-            <div class="categories-sidebar">
-                <div class="heading">
-                    LATEST NEWS IN SOURCE
+            <div class="horizontal-border mt-3 mb-2">
+                <div class="intro">
+                    LATEST NEWS IN SOURCE 
                 </div>
             </div>
             {% for article in articles %}
-            <div class="story-highlight medium-highlight">
+            <div class="headline-container">
                 <div>
-                    <figure>
-                        <a href="{{article.url}}"> <img src="{{ article.image }}" alt=""></a>
-                    </figure>
-                    <a href="{{ article.url }}" class="text-primary text-sm">{{ article.title }}</a>
-                    <p class="line-clamp-2">{{ article.description }}</p>
-                    <p><strong>updated {{ article.publishedAt }}</strong></p>
+                    <div class="image-holder">
+                        <a href="{{article.url}}"> <img src="{{article.image}}" alt=""></a>
+                    </div>
+                    <a href="{{article.url}}" class="text-primary text-sm">{{ article.title }}</a>
+                    <p class="description">{{ article.description}}</p>
+                    <p><strong>updated {{article.publishedAt}}</strong></p>
                 </div>
             </div><br>
             {% endfor %}
         </div>
-        <!-- <div class="col-md-2"></div> -->
         <div class="col-md-3">
-            <div class="sidebar-right">
-                <div class="categories-sidebar">
-                    <div class="heading">
+            <div class="source-container">
+                <div class="horizontal-border mt-3">
+                    <div class="intro">
                         SOURCES
                     </div>
                 </div>
                 {% for source in sources %}
-                <li class="story-highlight sources-highlight text-primary text-muted">
-                    <a  href="/article/{{source.id}}"><span>{{ source.name }}</span></a>&nbsp;
+                <li class="source-list text-primary text-muted">
+                    <a href="/article/{{source.id}}" class="text-danger p-2 source-name">{{ source.name }}</a>
                 </li>
                 {% endfor %}
             </div>
