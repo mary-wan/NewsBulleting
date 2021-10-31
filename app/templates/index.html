@@ -8,16 +8,17 @@
 {% block content %}
 <div class="container-fluid m-0 pl-2">
     <div class="row">
+        <div class="category-headline"></div>
         <div class="col-md-3">
             <div class="categories-sidebar">
-                <div class="heading">
+                <div class="intro">
                     BUSINESS
                 </div>
             </div>
                 <div class="content">
                     {% for business in categories %}
-                    <li class="entertainment-item">
-                        <span class="entertainment-headline"><span>{{ business.publishedAt}} </span><a href="{{business.url}}" class="text-dark">{{ business.title }}</a> </span>
+                    <li class="category-info">
+                        <span class="category-headline"><span>{{ business.publishedAt}} </span><a href="{{business.url}}" class="text-dark">{{ business.title }}</a> </span>
                         <a href="{{business.url}}" class="text-primary">Read more... </a>
                     </li>
                     {% endfor %}
@@ -25,35 +26,34 @@
         </div>
         <div class="col-md-6">
             <div class="categories-sidebar">
-                <div class="heading">
+                <div class="intro">
                     LATEST NEWS
                 </div>
             </div>
             {% for headline in headlines %}
-            <div class="story-highlight medium-highlight">
+            <div class="medium-highlight">
                 <div>
                     <figure>
                         <a href="{{headline.url}}"> <img src="{{ headline.image }}" alt=""></a>
                     </figure>
                     <a href="{{ headline.url }}" class="text-primary text-sm">{{ headline.title }}</a>
-                    <p class="line-clamp-2">{{ headline.description }}</p>
+                    <p class="description">{{ headline.description }}</p>
                     <p><strong>updated {{ headline.publishedAt }}</strong></p>
                 </div>
-            </div>
+            </div><br>
             {% endfor %}
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-            <div class="sidebar-right">
+            <div class="source-container">
                 <div class="categories-sidebar">
-                    <div class="heading">
+                    <div class="intro">
                         SOURCES
                     </div>
                 </div>
                 {% for source in sources %}
-                <li class="story-highlight sources-highlight text-primary text-muted">
-                    <a href="/article/{{source.id}}"><span>{{ source.name }}</span></a>
-                    <!-- <a href="/article/{{source.id}}">{{ source.description }}</a> -->
+                <li class="source-list text-primary text-muted">
+                    <a href="/article/{{source.id}}" class="text-danger p-2 source-name">{{ source.name }}</a>
                 </li>
                 {% endfor %}
             </div>
