@@ -1,46 +1,33 @@
 {% extends 'base.html'%}
-{% block styles%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-{% endblock %}
-{% block content %}
-<div class="container-fluid m-0 pl-2">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="horizontal-border mt-3">
-                <div class="intro">
-                    IN A NUTSHELL
-                </div>
-            </div>
-                <div class="content">
-                    {% for category in topics %}
-                    <li class="category-info">
-                        <span class="category-headline"><span>{{ category.publishedAt}} </span><a href="{{category.url}}" class="text-dark">{{ category.title }}</a> </span>
-                        <a href="{{category.url}}" class="text-primary">Read more... </a>
-                    </li>
-                    {% endfor %}
-                </div>
-        </div>
-        <div class="col-md-6">
-            <div class="horizontal-border mt-3 mb-2">
-                <div class="intro">
-                    LATEST NEWS
-                </div>
-            </div>
-            {% for headline in topics %}
-            <div class="headline-container">
-                <div>
-                    <div class="image-holder">
-                        <a href="{{headline.url}}"> <img src="{{ headline.image }}" alt=""></a>
+{% import 'macros.html' as macro%}
+    {% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    {% endblock %}
+    {% block content %}
+    <div class="container-fluid m-0 pl-2">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="horizontal-border mt-3">
+                    <div class="intro">
+                        IN A NUTSHELL
                     </div>
-                    <a href="{{ headline.url }}" class="text-primary text-sm">{{ headline.title }}</a>
-                    <p class="description">{{ headline.description }}</p>
-                    <p><strong>updated {{ headline.publishedAt }}</strong></p>
                 </div>
-            </div><br>
-            {% endfor %}
+                    <div class="content">
+                        {{macro.displayInNutshell(topics)}}
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="horizontal-border mt-3 mb-2">
+                    <div class="intro">
+                        LATEST NEWS
+                    </div>
+                </div>
+                <div class="headline-container">
+                    {{macro.displayHeadlineList(topics)}}
+                </div>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

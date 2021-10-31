@@ -5,7 +5,7 @@ from ..request import get_headlines,get_category,get_source,get_source_aricles,s
 @main.route('/')
 def index():
     '''
-    Root function returning index/home page with data
+    method to render home page
     '''
     sources= get_source()
     categories= get_category('business')
