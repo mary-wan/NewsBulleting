@@ -3,14 +3,13 @@
 {% block styles%}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/font.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 {% block content %}
 <div class="container-fluid m-0 pl-2">
     <div class="row">
-        <div class="category-headline"></div>
         <div class="col-md-3">
-            <div class="categories-sidebar">
+            <div class="horizontal-border mt-3">
                 <div class="intro">
                     BUSINESS
                 </div>
@@ -25,17 +24,17 @@
                 </div>
         </div>
         <div class="col-md-6">
-            <div class="categories-sidebar">
+            <div class="horizontal-border mt-3 mb-2">
                 <div class="intro">
                     LATEST NEWS
                 </div>
             </div>
             {% for headline in headlines %}
-            <div class="medium-highlight">
+            <div class="headline-container">
                 <div>
-                    <figure>
+                    <div class="image-holder">
                         <a href="{{headline.url}}"> <img src="{{ headline.image }}" alt=""></a>
-                    </figure>
+                    </div>
                     <a href="{{ headline.url }}" class="text-primary text-sm">{{ headline.title }}</a>
                     <p class="description">{{ headline.description }}</p>
                     <p><strong>updated {{ headline.publishedAt }}</strong></p>
@@ -46,7 +45,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-2">
             <div class="source-container">
-                <div class="categories-sidebar">
+                <div class="horizontal-border mt-3">
                     <div class="intro">
                         SOURCES
                     </div>
