@@ -147,19 +147,19 @@ def get_source_aricles(id):
             
     return source_results
 
-def process_source_article_results(article_list):
+def process_source_article_results(headline_list):
     '''
-    Function  that processes the headline result and transform them to a list of Objects
+    Function  that processes the source result and transform them to a list of Objects
 
     Args:
-        article_list: A list of dictionaries that contain headline details
+        headline_list: A list of dictionaries that contain headline details
 
     Returns :
         headline_results: headlines in the dict
     '''
     
     headline_results=[]
-    for headline_item in article_list:
+    for headline_item in headline_list:
         image = headline_item.get('urlToImage')
         title = headline_item.get ('title')
         author = headline_item.get('author')
