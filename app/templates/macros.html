@@ -5,8 +5,8 @@
             <div class="image-holder">
                 <a href="{{headline.url}}"> <img src="{{ headline.image }}" alt=""></a>
             </div>
-            <a href="{{ headline.url }}" class="text-primary text-sm">{{ headline.title }}</a>
-            <p class="description">{{ headline.description }}</p>
+            <a href="{{ headline.url }}" class="text-primary text-sm">{{ headline.title|truncate(100) }}</a>
+            <p class="description">{{ headline.description|truncate(130) }}</p>
             <p><strong>updated {{ headline.publishedAt }}</strong></p>
         </div><br>
     {% endfor %}
@@ -28,5 +28,18 @@
         <li class="source-list text-primary text-muted">
             <a href="/article/{{source.id}}" class="text-danger p-2 source-name">{{ source.name }}</a>
         </li>
+    {% endfor %}
+{% endmacro %}
+{% macro displayArticleList(article_list) %}
+
+    {% for headline in article_list %}
+        <div>
+            <div class="image-holder">
+                <a href="{{headline.url}}"> <img src="{{ headline.image }}" alt=""></a>
+            </div>
+            <a href="{{ headline.url }}" class="text-primary text-sm">{{ headline.title|truncate(100) }}</a>
+            <p class="description">{{ headline.description|truncate(130) }}</p>
+            <p><strong>updated {{ headline.publishedAt|truncate(13) }}</strong></p>
+        </div><br>
     {% endfor %}
 {% endmacro %}
