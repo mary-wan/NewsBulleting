@@ -12,6 +12,9 @@
 ## Description
 Application that helps to those always miss the news and they are very frustrated since they can't keep up with current affairs. The site shows different articles from different sources and authors. It consumes the NEWS API
 
+## Site image
+![Site Image](app/static/imgs/site.png)
+
 ## Live link
 `https://newsbulleting.herokuapp.com/`
 ## Installation
@@ -45,6 +48,7 @@ $ python3.6 manage.py test
 | Behaviour | Input | Output |
 | :---------------- | :---------------: | ------------------: |
 | Display top headlines | page loads | Top headlines and a list various sources is displayed|
+| Search for topic  | user searches topic of interest| News articles in that topic are displayed|
 | Read an article  | user clicks on article displayed | user is redirected to  source page|
 | Display news in category | user clicks on category link | News articles in that category are displayed |
 | Display articles from a news source | user clicks on source link | News articles in that source are displayed  |
